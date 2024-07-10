@@ -38,6 +38,7 @@ Sudoku::Sudoku(QWidget *parent)
     revisor(ui)
 {
     ui->setupUi(this);
+    connect(ui->Generar_button, &QPushButton::clicked, this, &Sudoku::on_Generar_button_clicked);
 }
 
 Sudoku::~Sudoku()
@@ -77,7 +78,6 @@ void Sudoku::on_SolveSlow_clicked()
 void Sudoku::on_Stop_Recussion_clicked()
 {
     emit on_Stopped();
-    DisplayGrid_nt();
 }
 
 void Sudoku::on_Revisar_Button_clicked()
@@ -127,6 +127,12 @@ void Sudoku::on_Undo_Solve_clicked() {
 
 }
 
+void Sudoku::on_Generar_button_clicked() {
+    int filledCells = ui->Generador_cantidad->value();
+    generador.generateSudoku(grid, filledCells);
+    DisplayGrid();
+}
+
 
 
 void Sudoku::DisplayGrid()
@@ -141,20 +147,6 @@ void Sudoku::DisplayGrid()
                 {
                     ui->Table->item(i, j)->setBackground(Qt::gray);
                 }
-            }
-        }
-    }
-    update();
-}
-void Sudoku::DisplayGrid_nt()
-{
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            ui->Table->setItem(i, j, new QTableWidgetItem);
-            if (grid[i][j]>0){
-                QString str = QString::number(grid[i][j]);
-                ui->Table->item(i, j)->setText(str);
-
             }
         }
     }

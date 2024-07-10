@@ -6,6 +6,7 @@
 #include <QThread>
 #include <QtConcurrent/QtConcurrent>
 #include <QFuture>
+#include "Generador.h"
 
 class Sudoku : public QMainWindow
 {
@@ -16,12 +17,12 @@ public:
     ~Sudoku();
 
     void DisplayGrid();
-    void DisplayGrid_nt();
 
 private:
     Ui::SudokuClass *ui;
     Revisor revisor;
     Solve SolveThread;
+    Generador generador;
     bool solveSudoku();
     bool solveSudokuNumber();
     void GreyCells();
@@ -37,6 +38,7 @@ private slots:
     void on_Undo_Solve_clicked();
     void on_Stop_Recussion_clicked();
     void on_Revisar_Button_clicked();
+    void on_Generar_button_clicked();
 
 public slots:
     void DisplaySingleItem(int i, int j, int n);

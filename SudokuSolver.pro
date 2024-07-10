@@ -13,6 +13,7 @@ SOURCES += \
     Sudoku.cpp
 
 HEADERS += \
+    Generador.h \
     Solve.h \
     Sudoku.h \
     revisor.h

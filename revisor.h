@@ -56,6 +56,7 @@ public:
                 return true;}}
         return false;
     }
+
     int get_id(int boxStart){
         if (boxStart>=6)
             return 6;
@@ -63,7 +64,9 @@ public:
             return 3;
         if (boxStart>=0)
             return 0;
+        return 0;
     }
+
     //Retorna True si num está presente el la caja
     bool isPresentInBox(int boxStartRow, int boxStartCol, int num, int grid[9][9]){
 
@@ -90,7 +93,7 @@ public:
 
     //Retorna True si el num puede ser colocado en ese espacio
     bool isValidPlace(int row, int col, int num, int grid[9][9]){
-            return !isPresentInRow(row, col, num, grid) && !isPresentInCol(row,col, num, grid) && !isPresentInBox(row,col, num, grid);
+        return !isPresentInRow(row, col, num, grid) && !isPresentInCol(row,col, num, grid) && !isPresentInBox(row,col, num, grid);
     }
 
 private:

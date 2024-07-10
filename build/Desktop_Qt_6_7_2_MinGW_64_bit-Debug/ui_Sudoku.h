@@ -18,6 +18,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
@@ -50,6 +51,10 @@ public:
     QPushButton *SolveSlow;
     QLabel *OutputLabel1_5;
     QPushButton *Stop_Recussion;
+    QWidget *tab_3;
+    QSpinBox *Generador_cantidad;
+    QPushButton *Generar_button;
+    QLabel *OutputLabel1_6;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -136,6 +141,7 @@ public:
         Revisar_Button->setFont(font2);
         Revisar_Button->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "  border: 1px solid gray;\n"
+"	color: rgb(255, 255, 255);\n"
 "  border-radius: 10px;\n"
 "  padding: 0 2px;\n"
 "  background: rgb(84, 255, 90); \n"
@@ -145,23 +151,18 @@ public:
         tabWidget->setObjectName("tabWidget");
         tabWidget->setGeometry(QRect(470, 130, 231, 251));
         tabWidget->setStyleSheet(QString::fromUtf8("*\n"
-"\n"
 "{\n"
 "	background: rgba(32, 80, 96, 50);\n"
-"color: rgb(0, 0, 0);\n"
 "}\n"
 "\n"
 "QTabWidget::pane { /* The tab widget frame */\n"
 "    border-top: 2px solid #C2C7CB;\n"
 "    position: absolute;\n"
 "    top: -0.5em;\n"
-"	\n"
 "}\n"
 "\n"
 "QTabWidget::tab-bar {\n"
 "    alignment: center;\n"
-"	\n"
-"	\n"
 "}\n"
 "\n"
 "/* Style the tab using the tab sub-control. Note that\n"
@@ -180,9 +181,9 @@ public:
 "\n"
 "QTabBar::tab:selected, QTabBar::tab:hover {\n"
 "    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                       "
-                        "         stop: 0 #fafafa, stop: 0.4 #f4f4f4,\n"
-"                                stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);\n"
+"                                stop: 0 #fafafa, stop: 0.4 #f4f4f4,\n"
+""
+                        "                                stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);\n"
 "}\n"
 "\n"
 "QTabBar::tab:selected {\n"
@@ -220,47 +221,6 @@ public:
         Undo_Solve = new QPushButton(tab);
         Undo_Solve->setObjectName("Undo_Solve");
         Undo_Solve->setGeometry(QRect(20, 130, 181, 51));
-        QPalette palette;
-        QBrush brush(QColor(255, 255, 255, 255));
-        brush.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Active, QPalette::WindowText, brush);
-        QBrush brush1(QColor(76, 175, 80, 255));
-        brush1.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Active, QPalette::Button, brush1);
-        palette.setBrush(QPalette::Active, QPalette::Text, brush);
-        palette.setBrush(QPalette::Active, QPalette::ButtonText, brush);
-        palette.setBrush(QPalette::Active, QPalette::Base, brush1);
-        palette.setBrush(QPalette::Active, QPalette::Window, brush1);
-        QBrush brush2(QColor(255, 255, 255, 128));
-        brush2.setStyle(Qt::SolidPattern);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
-#endif
-        palette.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
-        palette.setBrush(QPalette::Inactive, QPalette::Button, brush1);
-        palette.setBrush(QPalette::Inactive, QPalette::Text, brush);
-        palette.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
-        palette.setBrush(QPalette::Inactive, QPalette::Base, brush1);
-        palette.setBrush(QPalette::Inactive, QPalette::Window, brush1);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush2);
-#endif
-        palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
-        palette.setBrush(QPalette::Disabled, QPalette::Button, brush1);
-        palette.setBrush(QPalette::Disabled, QPalette::Text, brush);
-        palette.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
-        palette.setBrush(QPalette::Disabled, QPalette::Base, brush1);
-        palette.setBrush(QPalette::Disabled, QPalette::Window, brush1);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush2);
-#endif
-        Undo_Solve->setPalette(palette);
-        QFont font3;
-        font3.setBold(false);
-        font3.setItalic(false);
-        font3.setUnderline(false);
-        font3.setStrikeOut(false);
-        Undo_Solve->setFont(font3);
         Undo_Solve->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    background-color: #4CAF50; /* Fondo verde */\n"
 "    border: none;\n"
@@ -281,9 +241,7 @@ public:
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: #3e8e41; /* Fondo a\303\272n m\303\241s oscuro al hacer clic */\n"
-"}\n"
-""));
-        Undo_Solve->setAutoDefault(false);
+"}"));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName("tab_2");
@@ -291,7 +249,6 @@ public:
         horizontalSlider->setObjectName("horizontalSlider");
         horizontalSlider->setGeometry(QRect(30, 150, 160, 22));
         horizontalSlider->setLayoutDirection(Qt::RightToLeft);
-        horizontalSlider->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         horizontalSlider->setMinimum(10);
         horizontalSlider->setMaximum(200);
         horizontalSlider->setValue(20);
@@ -304,6 +261,11 @@ public:
         Solve = new QPushButton(tab_2);
         Solve->setObjectName("Solve");
         Solve->setGeometry(QRect(40, 20, 151, 41));
+        QFont font3;
+        font3.setBold(true);
+        font3.setItalic(false);
+        font3.setUnderline(false);
+        font3.setStrikeOut(false);
         Solve->setFont(font3);
         Solve->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    background-color: rgb(43, 255, 114);; /* Fondo verde */\n"
@@ -325,8 +287,7 @@ public:
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: #3e8e41; /* Fondo a\303\272n m\303\241s oscuro al hacer clic */\n"
-"}\n"
-""));
+"}"));
         OutputLabel1_3 = new QLabel(tab_2);
         OutputLabel1_3->setObjectName("OutputLabel1_3");
         OutputLabel1_3->setGeometry(QRect(170, 170, 41, 16));
@@ -335,37 +296,6 @@ public:
         SolveSlow = new QPushButton(tab_2);
         SolveSlow->setObjectName("SolveSlow");
         SolveSlow->setGeometry(QRect(10, 120, 101, 24));
-        QPalette palette1;
-        palette1.setBrush(QPalette::Active, QPalette::WindowText, brush);
-        QBrush brush3(QColor(173, 173, 173, 255));
-        brush3.setStyle(Qt::SolidPattern);
-        palette1.setBrush(QPalette::Active, QPalette::Button, brush3);
-        palette1.setBrush(QPalette::Active, QPalette::Text, brush);
-        palette1.setBrush(QPalette::Active, QPalette::ButtonText, brush);
-        palette1.setBrush(QPalette::Active, QPalette::Base, brush3);
-        palette1.setBrush(QPalette::Active, QPalette::Window, brush3);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
-#endif
-        palette1.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
-        palette1.setBrush(QPalette::Inactive, QPalette::Button, brush3);
-        palette1.setBrush(QPalette::Inactive, QPalette::Text, brush);
-        palette1.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
-        palette1.setBrush(QPalette::Inactive, QPalette::Base, brush3);
-        palette1.setBrush(QPalette::Inactive, QPalette::Window, brush3);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush2);
-#endif
-        palette1.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
-        palette1.setBrush(QPalette::Disabled, QPalette::Button, brush3);
-        palette1.setBrush(QPalette::Disabled, QPalette::Text, brush);
-        palette1.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
-        palette1.setBrush(QPalette::Disabled, QPalette::Base, brush3);
-        palette1.setBrush(QPalette::Disabled, QPalette::Window, brush3);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush2);
-#endif
-        SolveSlow->setPalette(palette1);
         QFont font4;
         font4.setUnderline(false);
         font4.setStrikeOut(false);
@@ -403,36 +333,7 @@ public:
         OutputLabel1_5->setAlignment(Qt::AlignCenter);
         Stop_Recussion = new QPushButton(tab_2);
         Stop_Recussion->setObjectName("Stop_Recussion");
-        Stop_Recussion->setGeometry(QRect(120, 120, 101, 24));
-        QPalette palette2;
-        palette2.setBrush(QPalette::Active, QPalette::WindowText, brush);
-        palette2.setBrush(QPalette::Active, QPalette::Button, brush3);
-        palette2.setBrush(QPalette::Active, QPalette::Text, brush);
-        palette2.setBrush(QPalette::Active, QPalette::ButtonText, brush);
-        palette2.setBrush(QPalette::Active, QPalette::Base, brush3);
-        palette2.setBrush(QPalette::Active, QPalette::Window, brush3);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette2.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
-#endif
-        palette2.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
-        palette2.setBrush(QPalette::Inactive, QPalette::Button, brush3);
-        palette2.setBrush(QPalette::Inactive, QPalette::Text, brush);
-        palette2.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
-        palette2.setBrush(QPalette::Inactive, QPalette::Base, brush3);
-        palette2.setBrush(QPalette::Inactive, QPalette::Window, brush3);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette2.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush2);
-#endif
-        palette2.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
-        palette2.setBrush(QPalette::Disabled, QPalette::Button, brush3);
-        palette2.setBrush(QPalette::Disabled, QPalette::Text, brush);
-        palette2.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
-        palette2.setBrush(QPalette::Disabled, QPalette::Base, brush3);
-        palette2.setBrush(QPalette::Disabled, QPalette::Window, brush3);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette2.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush2);
-#endif
-        Stop_Recussion->setPalette(palette2);
+        Stop_Recussion->setGeometry(QRect(120, 120, 91, 24));
         Stop_Recussion->setFont(font4);
         Stop_Recussion->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    \n"
@@ -458,6 +359,45 @@ public:
 "}\n"
 ""));
         tabWidget->addTab(tab_2, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName("tab_3");
+        Generador_cantidad = new QSpinBox(tab_3);
+        Generador_cantidad->setObjectName("Generador_cantidad");
+        Generador_cantidad->setGeometry(QRect(60, 160, 111, 22));
+        Generador_cantidad->setMinimum(1);
+        Generador_cantidad->setMaximum(81);
+        Generar_button = new QPushButton(tab_3);
+        Generar_button->setObjectName("Generar_button");
+        Generar_button->setGeometry(QRect(40, 40, 151, 41));
+        Generar_button->setFont(font3);
+        Generar_button->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(43, 255, 114);; /* Fondo verde */\n"
+"    border: none;\n"
+"    color: black; /* Color de la letra */\n"
+"    padding: 10px 15px;\n"
+"    text-align: center;\n"
+"    text-decoration: none;\n"
+"    display: inline-block;\n"
+"    font-size: 16px;\n"
+"    margin: 4px 2px;\n"
+"    cursor: pointer;\n"
+"    border-radius: 12px; /* Bordes redondeados */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #45a049; /* Fondo m\303\241s oscuro al pasar el cursor */\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #3e8e41; /* Fondo a\303\272n m\303\241s oscuro al hacer clic */\n"
+"}"));
+        OutputLabel1_6 = new QLabel(tab_3);
+        OutputLabel1_6->setObjectName("OutputLabel1_6");
+        OutputLabel1_6->setGeometry(QRect(30, 120, 161, 20));
+        OutputLabel1_6->setFont(font5);
+        OutputLabel1_6->setStyleSheet(QString::fromUtf8("color: white;"));
+        OutputLabel1_6->setAlignment(Qt::AlignCenter);
+        tabWidget->addTab(tab_3, QString());
         SudokuClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(SudokuClass);
         menuBar->setObjectName("menuBar");
@@ -472,7 +412,7 @@ public:
 
         retranslateUi(SudokuClass);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(SudokuClass);
@@ -494,6 +434,9 @@ public:
         OutputLabel1_5->setText(QCoreApplication::translate("SudokuClass", "Opciones avanzadas", nullptr));
         Stop_Recussion->setText(QCoreApplication::translate("SudokuClass", "Parar Recursi\303\263n", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("SudokuClass", "Solver", nullptr));
+        Generar_button->setText(QCoreApplication::translate("SudokuClass", "Generar", nullptr));
+        OutputLabel1_6->setText(QCoreApplication::translate("SudokuClass", "Cantidad de casillas llenas", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("SudokuClass", "Generador", nullptr));
     } // retranslateUi
 
 };
